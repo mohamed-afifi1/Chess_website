@@ -1,3 +1,9 @@
+#!/usr/bin/python3
+
+""" Handling Routes for Authentication """
+
+
+
 from flask import render_template, redirect, Blueprint, url_for
 from flask_login import login_user,  login_required, logout_user
 from database.db_manager import db, bcrypt, LoginForm, RegisterForm, User
@@ -21,10 +27,12 @@ def login():
     return render_template('login.html', form=form)
 
 
+
 @app_blueprint.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
     return render_template('dashboard.html')
+
 
 
 @app_blueprint.route('/logout', methods=['GET', 'POST'])
@@ -32,6 +40,7 @@ def dashboard():
 def logout():
     logout_user()
     return redirect(url_for('app_blueprint.login'))
+
 
 
 @app_blueprint.route('/register', methods=['GET', 'POST'])
