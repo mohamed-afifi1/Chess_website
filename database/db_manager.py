@@ -1,3 +1,8 @@
+#!/usr/bin/python3
+
+""" Managing DB SQLITE """
+
+
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
@@ -13,15 +18,18 @@ login_manager = LoginManager()
 login_manager.login_view = 'app_blueprint.login'
 
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
 
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
+
 
 
 class RegisterForm(FlaskForm):
@@ -39,6 +47,7 @@ class RegisterForm(FlaskForm):
         if existing_user_username:
             raise ValidationError(
                 'That username already exists. Please choose a different one.')
+
 
 
 class LoginForm(FlaskForm):
