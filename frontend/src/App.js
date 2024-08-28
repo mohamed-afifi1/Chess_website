@@ -1,24 +1,39 @@
-import logo from './logo.svg';
+import React, { useState }from 'react';
+import { Chessboard } from 'react-chessboard';
+import { Chess } from "chess.js";
 import './App.css';
 
+
+
 function App() {
+  const [game, setGame] = useState(new Chess());
+  function drop (start, end, pro) {
+    pro = pro.toLowerCase();
+    pro = pro[1];
+    console.log(start, end, pro);
+    let copy = { ...game };
+    
+    copy.move({ from: start, to: end , promotion: pro})
+    setGame(copy);
+    return true;
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <nav>
+        <ul>
+            <li><a href="https://github.com/jhlywa/chess.js">Home</a></li>
+            <li><a href="https://github.com/jhlywa/chess.js">Login</a></li>
+            <li><a href="https://github.com/jhlywa/chess.js">Register</a></li>
+        </ul>
+    </nav>
+    <div className="app">
+      <Chessboard position={game.fen()}
+       onPieceDrop={ drop }
+       customDarkSquareStyle={{ backgroundColor: "#f39c12" }}
+       arePremovesAllowed={ true }
+       />
     </div>
+    </>
   );
 }
 
