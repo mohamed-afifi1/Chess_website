@@ -11,7 +11,6 @@ function ChessOffline() {
   function drop (start, end, pro) {
     pro = pro.toLowerCase();
     pro = pro[1];
-    console.log(start, end, pro);
     let copy = { ...game };
     
     copy.move({ from: start, to: end , promotion: pro})
@@ -27,7 +26,10 @@ function ChessOffline() {
        customDarkSquareStyle={{ backgroundColor: "#f39c12" }}
        customArrowColor='blue'
        />
+       {game.in_checkmate() ? <h1>Checkmate</h1> : null}
+       {game.in_draw() ? <h1>Draw</h1> : null}
     </div>
+    
     </>
   );
 }
