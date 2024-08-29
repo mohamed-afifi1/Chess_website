@@ -31,9 +31,7 @@ def login():
 @app_blueprint.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
-
-
+    return redirect('http://localhost:3000/')
 
 @app_blueprint.route('/logout', methods=['GET', 'POST'])
 @login_required
