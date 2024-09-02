@@ -3,14 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ChessOffline from './chessoffline';
+import EasyComputer from './computer/easy_comp';
+import HardComputer from './computer/hard_comp';
+import ChooseComputer from './computer/choose_comp';
 import App from './App';
 import Online from './online';
 
 const router = createBrowserRouter([
-    { path: '/offline', element: <ChessOffline/>},
-    { path: '/', element: <App />},
-    { path: '*', element:  <h1>Page not found</h1> },// 404 page handler
-    { path: '/online', element: <Online />}
+    { path: '/offline', element: <ChessOffline /> },
+    { path: '/', element: <App /> },
+    { path: '*', element: <h1>Page not found</h1> },// 404 page handler
+    { path: '/online', element: <Online /> },
+    { path: '/computer', element: <ChooseComputer /> },  // Only show ChooseComputer on /computer
+    { path: '/computer/easy_comp', element: <EasyComputer /> },  // Easy computer route
+    { path: '/computer/hard_comp', element: <HardComputer /> },  // Hard computer route
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

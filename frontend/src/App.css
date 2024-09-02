@@ -1,3 +1,4 @@
+/* app.css */
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #f4f4f4;
@@ -5,7 +6,7 @@ body {
   padding: 0;
 }
 
-.board{
+.board {
   width: 500px;
   height: 400px;
   margin: 1.5rem;
@@ -65,4 +66,53 @@ h1 {
 
 .links a:hover {
   background-color: #e67e22;
+}
+
+/* Main App Container */
+.app-container {
+  text-align: center;
+  padding: 50px;
+  background-color: #f0f0f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Links Container */
+.app-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Link Styles */
+.app-link {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #f39c12;
+  padding: 15px 30px;
+  border-radius: 30px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Link Hover Effect */
+.app-link:hover {
+  background-color: #f39c12;
+}
+
+/* Link Active Effect */
+.app-link:active {
+  transform: scale(0.95);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .app-link {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+  }
 }
