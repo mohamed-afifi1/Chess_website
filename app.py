@@ -2,6 +2,8 @@ from flask import Flask
 from routes.auth_routes import app_blueprint
 from database.db_manager import db, bcrypt, login_manager
 from routes.online_route import Socketio
+from routes.api_routes import api
+
 app = Flask(__name__)
 
 # Configure application
@@ -15,6 +17,7 @@ Socketio.init_app(app)
 login_manager.init_app(app)
 
 app.register_blueprint(app_blueprint)
+app.register_blueprint(api)
 
 if __name__ == "__main__":
     with app.app_context():

@@ -38,7 +38,6 @@ class RegisterForm(FlaskForm):
 
     password = PasswordField(validators=[
                              InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
-
     submit = SubmitField('Register')
 
     def validate_username(self, username):

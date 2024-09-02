@@ -47,6 +47,8 @@ function EasyComputer() {
                 customDarkSquareStyle={{ backgroundColor: "#f39c12" }}
                 customArrowColor='blue'
             />
+            {game.in_checkmate() ? <h1>Checkmate</h1> : null}
+            {game.in_draw() ? <h1>Draw</h1> : null}
         </div>
     );
 }
