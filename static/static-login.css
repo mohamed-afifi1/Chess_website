@@ -1,62 +1,68 @@
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-image: url(blurred_chess_photo.jpeg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+        background-size: cover;
 
-.container {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 100%;
-    max-width: 400px;
-}
+    }
 
-h1 {
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 2rem;
-}
+    .container {
+        background-color: #333;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+    }
 
-form {
-    display: flex;
-    flex-direction: column;
-}
+    h1 {
+        margin-bottom: 20px;
+        color: #FFF;
+        font-size: 2rem;
+    }
 
-form .form-control {
-    margin-bottom: 20px;
-    font-size: 1rem;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
+    form {
+        display: flex;
+        flex-direction: column;
+    }
 
-form .btn {
-    background-color: #f39c12;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+    form .form-control {
+        margin-bottom: 20px;
+        font-size: 1rem;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
 
-form .btn:hover {
-    background-color: #e67e22;
-}
+    form .btn {
+        background-color: #f39c12;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
 
-a {
-    color: #f39c12;
-    text-decoration: none;
-}
+    form .btn:hover {
+        background-color: #e67e22;
+    }
 
-a:hover {
-    text-decoration: underline;
-}
+    a {
+        color: #f39c12;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
