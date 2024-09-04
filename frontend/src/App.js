@@ -5,9 +5,9 @@ import './css-files/home.css';
 import { Navbar } from './navbar';
 
 export default function App() {
-
   return (
     <>
+    
       <Navbar />
       <div className="app-container">
         <div className="app-links">

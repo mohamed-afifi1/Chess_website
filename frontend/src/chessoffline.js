@@ -3,6 +3,7 @@ import { Chessboard } from 'react-chessboard';
 import { Chess } from "chess.js";
 import './css-files/offline.css';
 import { Navbar } from './navbar';
+import { AuthProvider } from './AuthContext';
 
 function ChessOffline() {
   const [game, setGame] = useState(new Chess());
@@ -40,6 +41,7 @@ function ChessOffline() {
 
   return (
     <>
+    <AuthProvider>
       <Navbar />
       <div className="chess-offline-container">
         {gameOver && (
@@ -57,6 +59,7 @@ function ChessOffline() {
           />
         </div>
       </div>
+      </AuthProvider>
     </>
   );
 }
