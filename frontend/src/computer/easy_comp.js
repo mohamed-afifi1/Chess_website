@@ -1,3 +1,5 @@
+// easy Computer
+
 import './comp.css';
 import { useState } from 'react';
 import { Chessboard } from 'react-chessboard';

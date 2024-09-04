@@ -1,61 +1,88 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { io } from 'socket.io-client';
-import { Chessboard } from'react-chessboard';
+import { Chessboard } from 'react-chessboard';
 import { Chess } from 'chess.js';
-import { Navbar } from './navbar'
-import { useParams } from 'react-router-dom'
+import { Navbar } from './navbar';
+import { useParams } from 'react-router-dom';
+import './css-files/online.css';
 
-export const socket = io('http://127.0.0.1:5000', {autoConnect: false});
+export const socket = io('http://127.0.0.1:5000', { autoConnect: false });
 
-
-function Online(){
+function Online() {
   const { color } = useParams();
-    socket.connect();
-    socket.on('connect', function() {
-        console.log('Connected to server');
-    });
-    const [game, setGame] = useState(new Chess());
-    function drop (start, end, pro) {
-      console.log(game.turn());
-      if ((game.turn() === 'w' && color === 'white') || (game.turn() === 'b' && color === 'black'))
-      {
+  socket.connect();
+  socket.on('connect', function () {
+    console.log('Connected to server');
+  });
+  const [game, setGame] = useState(new Chess());
+  const [gameOver, setGameOver] = useState(false);
+  const [winner, setWinner] = useState('');
+
+  function drop(start, end, pro) {
+    if ((game.turn() === 'w' && color === 'white') || (game.turn() === 'b' && color === 'black')) {
       pro = pro.toLowerCase();
       pro = pro[1];
-      let copy = { ...game };
-      copy.move({ from: start, to: end , promotion: pro});
-      socket.emit('move', copy.fen());
-      setGame(copy);
-      }
-      return true;
-    }
-    useEffect(() => {
-      socket.on('make_move', function(fen) {
-        const copy = new Chess(fen);
-        setGame(copy);
+      let move = null;
+
+      setGame((g) => {
+        const copy = { ...g };
+        move = copy.move({ from: start, to: end, promotion: pro });
+        socket.emit('move', copy.fen());
+        return copy;
       });
 
-      return () => {
-        socket.off('update');
+      if (move == null) return false;
+
+      if (game.in_checkmate()) {
+        setGameOver(true);
+        setWinner("Checkmate! You won!");
+      } else if (game.in_draw()) {
+        setGameOver(true);
+        setWinner("The game is a draw!");
       }
+    }
+    return true;
+  }
+
+  useEffect(() => {
+    socket.on('make_move', function (fen) {
+      const copy = new Chess(fen);
+      setGame(copy);
     });
 
-    return (
-      <>
+    return () => {
+      socket.off('make_move');
+    };
+  }, []);
+
+  function restartGame() {
+    setGame(new Chess());
+    setGameOver(false);
+  }
+
+  return (
+    <>
       <Navbar />
-      <div className="board">
-        <Chessboard position={game.fen()}
-         onPieceDrop={ drop }
-         customDarkSquareStyle={{ backgroundColor: "#f39c12" }}
-         customArrowColor='blue'
-         boardOrientation = {color}
-         />
-         {game.in_checkmate() ? <h1>Checkmate</h1> : null}
-         {game.in_draw() ? <h1>Draw</h1> : null}
+      <div className="online-chess-container">
+        {gameOver && (
+          <div className="online-chess-game-over-screen">
+            <h2>{winner}</h2>
+            <button onClick={restartGame}>Restart Game</button>
+          </div>
+        )}
+        <div className="online-chess-board">
+          <Chessboard
+            position={game.fen()}
+            onPieceDrop={drop}
+            customDarkSquareStyle={{ backgroundColor: "#f39c12" }}
+            customArrowColor="blue"
+            boardOrientation={color}
+          />
+        </div>
       </div>
-      
-      </>
-    );
+    </>
+  );
 }
 
 export default Online;

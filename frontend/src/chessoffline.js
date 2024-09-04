@@ -1,35 +1,62 @@
-import React, { useState }from 'react';
+import React, { useState } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { Chess } from "chess.js";
-import './App.css';
+import './css-files/offline.css';
 import { Navbar } from './navbar';
-
-
 
 function ChessOffline() {
   const [game, setGame] = useState(new Chess());
-  function drop (start, end, pro) {
+  const [gameOver, setGameOver] = useState(false);
+  const [winner, setWinner] = useState('');
+
+  function drop(start, end, pro) {
     pro = pro.toLowerCase();
     pro = pro[1];
-    let copy = { ...game };
-    
-    copy.move({ from: start, to: end , promotion: pro})
-    setGame(copy);
+    let move = null;
+
+    setGame((g) => {
+      const copy = { ...g };
+      move = copy.move({ from: start, to: end, promotion: pro });
+      return copy;
+    });
+
+    if (move == null) return false;
+
+    if (game.in_checkmate()) {
+      setGameOver(true);
+      setWinner("Checkmate! You won!");
+    } else if (game.in_draw()) {
+      setGameOver(true);
+      setWinner("The game is a draw!");
+    }
+
     return true;
   }
+
+  function restartGame() {
+    setGame(new Chess());
+    setGameOver(false);
+  }
+
   return (
     <>
-    <Navbar />
-    <div className="board">
-      <Chessboard position={game.fen()}
-       onPieceDrop={ drop }
-       customDarkSquareStyle={{ backgroundColor: "#f39c12" }}
-       customArrowColor='blue'
-       />
-       {game.in_checkmate() ? <h1>Checkmate</h1> : null}
-       {game.in_draw() ? <h1>Draw</h1> : null}
-    </div>
-    
+      <Navbar />
+      <div className="chess-offline-container">
+        {gameOver && (
+          <div className="chess-offline-game-over-screen">
+            <h2>{winner}</h2>
+            <button onClick={restartGame}>Restart Game</button>
+          </div>
+        )}
+        <div className="chess-offline-board">
+          <Chessboard
+            position={game.fen()}
+            onPieceDrop={drop}
+            customDarkSquareStyle={{ backgroundColor: "#f39c12" }}
+            customArrowColor="blue"
+          />
+        </div>
+      </div>
     </>
   );
 }

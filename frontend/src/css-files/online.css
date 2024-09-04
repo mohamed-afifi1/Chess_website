@@ -1,0 +1,50 @@
+.online-chess-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: rgb(56, 22, 22);
+}
+
+.online-chess-board {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 2rem;
+}
+
+.online-chess-game-over-screen {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    z-index: 1000;
+}
+
+.online-chess-game-over-screen h2 {
+    font-size: 2rem;
+    color: #e74c3c;
+    margin-bottom: 20px;
+}
+
+.online-chess-game-over-screen button {
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.online-chess-game-over-screen button:hover {
+    background-color: #e67e22;
+}
