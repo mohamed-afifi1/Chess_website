@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import './choose.css';
+import { Navbar } from '../navbar';
 
 const ChooseComputer = () => {
     return (
+        <>
+        <Navbar />
         <div className="choose-computer-container">
             <h2 className="choose-computer-heading">Choose the level</h2>
             <div className="choose-computer-links">
@@ -12,6 +15,7 @@ const ChooseComputer = () => {
             </div>
             <Outlet /> {/* This will render the selected child route */}
         </div>
+        </>
     );
 };
 

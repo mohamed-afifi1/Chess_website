@@ -3,7 +3,7 @@ import querystring from 'query-string';
 
 const AuthContext = createContext();
 const params = querystring.parse(window.location.search);
-const Idloged = params.userid;
+const Idloged = params.username;
 export function AuthProvider({ children }) {
     const [userId, setUserId] = useState('');
 

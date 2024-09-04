@@ -7,7 +7,7 @@
     min-height: 100vh;
     /* Ensures the container takes up full height */
     box-sizing: border-box;
-    background-color: #f4f4f4;
+    background-color: rgb(56, 22, 22);
 }
 
 .easy-computer-board {

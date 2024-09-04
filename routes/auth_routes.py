@@ -23,7 +23,7 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
-            return redirect(url_for('app_blueprint.dashboard', userid=user.id))
+            return redirect(url_for('app_blueprint.dashboard', username=user.username))
     return render_template('login.html', form=form)
 
 
@@ -31,8 +31,8 @@ def login():
 @app_blueprint.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    userID = request.args.get('userid')
-    response = make_response(redirect(f'http://localhost:3000?userid={userID}'))
+    userName = request.args.get('username')
+    response = make_response(redirect(f'http://localhost:3000?username={userName}'))
     return response
 @app_blueprint.route('/logout', methods=['GET', 'POST'])
 @login_required
