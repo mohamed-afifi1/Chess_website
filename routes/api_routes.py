@@ -6,8 +6,11 @@ from database.db_manager import db, bcrypt, LoginForm, RegisterForm, User
 
 api = Blueprint('api', __name__, url_prefix='/api')
 
-@api.route('/users')
+@api.route('/users', methods=['GET', 'POST'])
 def get_users():
     users = User.query.all()
-    return jsonify([user for user in users])
+    dictionary_users = {}
+    for user in users:
+        dictionary_users[user.id] = {'username': user.username}
+    return jsonify(dictionary_users)
 
