@@ -4,7 +4,7 @@
 
 
 
-from flask import render_template, redirect, Blueprint, url_for
+from flask import render_template, redirect, Blueprint, url_for, make_response, request
 from flask_login import login_user,  login_required, logout_user
 from database.db_manager import db, bcrypt, LoginForm, RegisterForm, User
 
@@ -31,8 +31,10 @@ def login():
 @app_blueprint.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    return redirect('http://localhost:3000/')
-
+    userID = request.args.get('userID')
+    print(f"Received userID: {userID}")  # Debug statement
+    response = make_response(redirect('http://localhost:3000'))
+    return response
 @app_blueprint.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
