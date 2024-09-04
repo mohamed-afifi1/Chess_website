@@ -3,9 +3,10 @@ from routes.auth_routes import app_blueprint
 from database.db_manager import db, bcrypt, login_manager
 from routes.online_route import Socketio
 from routes.api_routes import api
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)
 # Configure application
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SECRET_KEY'] = 'thisisasecretkey'
