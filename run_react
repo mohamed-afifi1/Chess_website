@@ -1,0 +1,3 @@
+#!/bin/bash
+# here will run the flask app:
+cd frontend && npm start
