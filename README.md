@@ -28,7 +28,7 @@ Welcome to our Chess Website! This project is a full-fledged chess game that off
 ## Screenshots
 
 ### Home Page
-![Home Page](https://path-to-your-image1.png)
+[![Home Page](https://path-to-your-image1.png)](https://github.com/mohamed-afifi1/Chess_website/issues/2#issue-2508011294)
 
 ### Game Interface
 ![Game Interface](https://path-to-your-image2.png)
