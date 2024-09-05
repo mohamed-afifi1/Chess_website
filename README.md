@@ -65,20 +65,3 @@ Follow the instructions below to set up the Chess Website on your local machine.
 
 ### Online Mode
 ![Screenshot 2024-09-05 153524](https://github.com/user-attachments/assets/03a970f0-7557-475f-b822-d69773c98c69)
-
----
-
-## Getting Started
-
-Follow the instructions below to set up the Chess Website on your local machine.
-
-### Prerequisites
-- Node.js
-- npm or yarn
-
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/mohamed-afifi1/chess_website.git
-   cd chess_website
-
