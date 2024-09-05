@@ -2,46 +2,69 @@
 
 Welcome to our Chess Website! This project is a full-fledged chess game that offers both offline and online modes, allowing players to compete against a computer or another player.
 
-![Logo](https://path-to-your-logo.png)
-
 ---
 
 ## Table of Contents
 - [Features](#features)
-- [Screenshots](#screenshots)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+- [Screenshots](#screenshots)
 
 ---
 
 ## Features
-- Play chess offline against an AI opponent (Easy & Hard levels).
+- Play chess offline against an Computer opponent (Easy & Hard levels).
 - Play chess online with other players in real-time.
 - Clean and intuitive interface.
 - Highlight available moves for selected pieces.
 - Fully responsive design.
+
+
+
+---
+
+## Getting Started
+
+Follow the instructions below to set up the Chess Website on your local machine.
+
+### Prerequisites
+- Node.js
+- npm or yarn
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mohamed-afifi1/chess_website.git
+   cd chess_website
+   ```
+
+2. open two tabs:
+   First to run flask app:
+   ```bash
+   ./run_flask
+   ```
+   second to run react app:
+   ```bash
+   ./run_react
+   ```
 
 ---
 
 ## Screenshots
 
 ### Home Page
-![Chess Game Home Page]([[![Home Page](https://path-to-your-image1.png)](https://github.com/mohamed-afifi1/Chess_website/issues/2#issue-2508011294)](https://private-user-images.githubusercontent.com/132397042/364826554-9ac3cb1d-87ea-4ffd-8aad-efa27d41b471.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjU1NTExNzcsIm5iZiI6MTcyNTU1MDg3NywicGF0aCI6Ii8xMzIzOTcwNDIvMzY0ODI2NTU0LTlhYzNjYjFkLTg3ZWEtNGZmZC04YWFkLWVmYTI3ZDQxYjQ3MS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwOTA1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDkwNVQxNTQxMTdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wMmNmOWVjZDdjMmRmYTRmYmRlNGExMTQ4NDEyYmM5ODA4NzE1ZTczM2NkMjAxYzhkNGY5OWZhZTg5ZGNiYTJjJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.ePpV9vAKjOVm77Ptbl6SwMYilpteRRpeCiVtRSUx6Y0))
+![Screenshot 2024-09-05 155143](https://github.com/user-attachments/assets/521e8334-63c0-4fc5-a91f-3676e553106b)
 
-
+### Login Page
+![Screenshot 2024-09-05 153315](https://github.com/user-attachments/assets/c20979ea-2218-4653-9cda-f2d57adb1d99)
 
 ### Game Interface
-![Game Interface](https://path-to-your-image2.png)
+![Screenshot 2024-09-05 155322](https://github.com/user-attachments/assets/01597759-67b1-4fd1-8741-8dc07691b33c)
 
 ### Easy Computer Mode
-![Easy Computer Mode](https://path-to-your-image3.png)
+![Screenshot 2024-09-05 153402](https://github.com/user-attachments/assets/6ac92df4-ddce-4230-9742-e071e4babf5c)
 
 ### Online Mode
-![Online Mode](https://path-to-your-image4.png)
-
-You can find more screenshots in the [screenshots section of our documentation](https://docs.google.com/document/d/1aKS39Kljq7YvGO3C8-oclOojDwXzBbrEXvk_5UO4DHs/edit).
+![Screenshot 2024-09-05 153524](https://github.com/user-attachments/assets/03a970f0-7557-475f-b822-d69773c98c69)
 
 ---
 
