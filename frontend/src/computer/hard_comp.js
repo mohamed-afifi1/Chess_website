@@ -9,6 +9,7 @@ import { Navbar } from '../navbar';
 import { AuthProvider } from '../AuthContext';
 
 function HardComputer() {
+    /*
     const [game, setGame] = useState(new Chess());
     const [gameOver, setGameOver] = useState(false);
     const [winner, setWinner] = useState('');
@@ -124,6 +125,12 @@ function HardComputer() {
             </AuthProvider>
         </>
     );
+    */
+    return (
+        <>
+        Hi Hard 
+        </>
+    )
 }
 
 export default HardComputer;
