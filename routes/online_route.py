@@ -16,3 +16,7 @@ def connect():
 @Socketio.on('move')
 def move(data):
     emit('make_move', data, broadcast=True, include_self=True)
+@Socketio.on('sendMessage')
+def send_message(message):
+    final_mesg = message['user'] +': '+ message['message']
+    emit('message', final_mesg, broadcast=True)

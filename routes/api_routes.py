@@ -6,7 +6,7 @@ from database.db_manager import db, bcrypt, LoginForm, RegisterForm, User
 
 api = Blueprint('api', __name__, url_prefix='/api')
 
-@api.route('/users', methods=['GET', 'POST'])
+@api.route('/users', methods=['GET'])
 def get_users():
     users = User.query.all()
     dictionary_users = {}

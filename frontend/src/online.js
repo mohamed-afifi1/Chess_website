@@ -6,6 +6,7 @@ import { Chess } from 'chess.js';
 import { Navbar } from './navbar';
 import { useParams } from 'react-router-dom';
 import './css-files/online.css';
+import Chat from './chat';
 
 export const socket = io('http://127.0.0.1:5000', { autoConnect: false });
 
@@ -64,6 +65,7 @@ function Online() {
   return (
     <>
       <Navbar />
+      <Chat />
       <div className="online-chess-container">
         {gameOver && (
           <div className="online-chess-game-over-screen">
