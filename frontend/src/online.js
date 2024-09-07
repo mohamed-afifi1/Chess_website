@@ -65,15 +65,8 @@ function Online() {
   return (
     <>
       <Navbar />
-      <Chat />
-      <div className="online-chess-container">
-        {gameOver && (
-          <div className="online-chess-game-over-screen">
-            <h2>{winner}</h2>
-            <button onClick={restartGame}>Restart Game</button>
-          </div>
-        )}
-        <div className="online-chess-board">
+      <div className="online-container">
+        <div className="chess-board">
           <Chessboard
             position={game.fen()}
             onPieceDrop={drop}
@@ -82,7 +75,16 @@ function Online() {
             boardOrientation={color}
           />
         </div>
+        <div className="online-chat">
+          <Chat />
+        </div>
       </div>
+      {gameOver && (
+        <div className="game-over">
+          <h2>{winner}</h2>
+          <button onClick={restartGame}>Restart Game</button>
+        </div>
+      )}
     </>
   );
 }

@@ -1,19 +1,28 @@
-.online-chess-container {
+.online-container {
     display: flex;
-    flex-direction: column;
-    padding: 20px;
-    min-height: 100vh;
-    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 40px;
+    padding-left: 300px;
     background-color: rgb(56, 22, 22);
+    height: 50vh;
 }
 
-.online-chess-board {
-    width: 100%;
-    max-width: 500px;
-    margin-top: 2rem;
+.chess-board {
+    width: 60%;
+    max-width: 600px;
+    margin-right: 20px;
 }
 
-.online-chess-game-over-screen {
+.online-chat {
+    width: 35%;
+    background-color: rgb(56, 22, 22);
+    padding-right: 300px;
+    border-radius: 10px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.game-over {
     position: absolute;
     top: 20%;
     left: 50%;
@@ -26,13 +35,13 @@
     z-index: 1000;
 }
 
-.online-chess-game-over-screen h2 {
+.game-over h2 {
     font-size: 2rem;
     color: #e74c3c;
     margin-bottom: 20px;
 }
 
-.online-chess-game-over-screen button {
+.game-over button {
     background-color: #f39c12;
     color: #fff;
     border: none;
@@ -43,6 +52,6 @@
     transition: background-color 0.3s ease;
 }
 
-.online-chess-game-over-screen button:hover {
+.game-over button:hover {
     background-color: #e67e22;
 }
