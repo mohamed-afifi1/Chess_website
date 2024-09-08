@@ -6,6 +6,7 @@ import ChessOffline from './chessoffline';
 import EasyComputer from './computer/easy_comp';
 import HardComputer from './computer/hard_comp';
 import ChooseComputer from './computer/choose_comp';
+import Profile from './profile';
 import App from './App';
 import Online from './online';
 import ChooseColor from './ChooseColor';
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
     { path: '/computer', element: <ChooseComputer /> },  // Only show ChooseComputer on /computer
     { path: '/computer/easy_comp', element: <EasyComputer /> },  // Easy computer route
     { path: '/computer/hard_comp', element: <HardComputer /> },  // Hard computer route
+    {path: '/profile', element: <Profile /> }, // Profile route
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

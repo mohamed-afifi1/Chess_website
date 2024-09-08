@@ -9,7 +9,7 @@ export function Navbar() {
     <nav>
       <ul>
         <li><Link to='/'>home</Link></li>
-        <li><a href="http://127.0.0.1:5000/logout">{userId}</a></li>
+        <li><Link to='/profile'>{userId}</Link></li>
         <li><a href="http://127.0.0.1:5000/logout">Logout</a></li>
       </ul>
     </nav>
