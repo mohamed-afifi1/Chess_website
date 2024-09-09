@@ -14,7 +14,7 @@ const ChooseColor = () => {
             <h2 className="choose-computer-heading">Choose the color you play with</h2>
             <div className="choose-computer-links">
                 <input type='text'
-                placeholder='Enter the game room'
+                placeholder='Enter the game room (make it unique as possible)'
                 className='room-input'
                 onChange={(text) => {setgameroom(text.target.value)}} />
                 <Link to={white} className="choose-computer-link">white</Link>
