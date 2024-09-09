@@ -3,22 +3,22 @@
     justify-content: space-between;
     align-items: flex-start;
     padding-top: 40px;
-    padding-left: 300px;
+    padding-left: 200px;
     background-color: rgb(56, 22, 22);
-    height: 50vh;
+    height: 100px;
 }
 
 .chess-board {
     width: 60%;
-    max-width: 600px;
+    max-width: 550px;
     margin-right: 20px;
 }
 
 .online-chat {
-    width: 35%;
+    width: 100px;
     background-color: rgb(56, 22, 22);
-    padding-right: 300px;
-    border-radius: 10px;
+    padding-right: 400px;
+    border-radius: 20px;
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
