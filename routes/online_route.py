@@ -5,7 +5,9 @@
 
 
 from flask import render_template, redirect, Blueprint, url_for
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, emit, join_room
+
+
 
 Socketio = SocketIO(cors_allowed_origins="http://localhost:3000")
 username = 'user1'
@@ -13,10 +15,17 @@ username = 'user1'
 def connect():
     print('Client connected')
 
+
+@Socketio.on('joingame')
+def join(gameroom):
+    join_room(gameroom)
+
+
 @Socketio.on('move')
-def move(data):
-    emit('make_move', data, broadcast=True, include_self=True)
+def move(data, gameroom):
+    emit('make_move', data,room=gameroom, include_self=True)
+
 @Socketio.on('sendMessage')
-def send_message(message):
+def send_message(message, gameroom):
     final_mesg = message['user'] +': '+ message['message']
-    emit('message', final_mesg, broadcast=True)
+    emit('message', final_mesg, broadcast=True, include_self=True)
