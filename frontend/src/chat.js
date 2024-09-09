@@ -3,6 +3,7 @@ import React from 'react';
 import { io } from 'socket.io-client'
 import { useAuth } from './AuthContext';
 import './css-files/chat.css';
+import { useParams } from 'react-router-dom';
 const socket = io('http://127.0.0.1:5000', { autoConnect: false });
 
 function Chat() {
@@ -10,6 +11,7 @@ function Chat() {
     const { userId } = useAuth();
     const [message, setMessage] = useState('');
     const [Chat, setChat] = useState([]);
+    const { gameroom } = useParams();
 
     useEffect(() => {
         socket.on('message', (msg) => {
@@ -36,7 +38,7 @@ function Chat() {
                     onChange={(e) => setMessage(e.target.value)}
                     onKeyPress={(e) => {
                         if (e.key === 'Enter') {
-                            socket.emit('sendMessage', { 'message': message, 'user': userId });
+                            socket.emit('sendMessage', { 'message': message, 'user': userId }, gameroom);
                             setMessage('');
                         }
                     }}

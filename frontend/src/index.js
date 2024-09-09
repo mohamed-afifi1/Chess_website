@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     { path: '/', element: <App /> },
     { path: '*', element: <h1>Page not found</h1> },// 404 page handler
     { path: '/online', element: <ChooseColor /> },
-    {path: '/online/:color', element: <Online />},
+    {path: '/online/:gameroom/:color', element: <Online />},
     { path: '/computer', element: <ChooseComputer /> },  // Only show ChooseComputer on /computer
     { path: '/computer/easy_comp', element: <EasyComputer /> },  // Easy computer route
     { path: '/computer/hard_comp', element: <HardComputer /> },  // Hard computer route

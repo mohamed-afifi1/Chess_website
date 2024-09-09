@@ -11,11 +11,13 @@ import Chat from './chat';
 export const socket = io('http://127.0.0.1:5000', { autoConnect: false });
 
 function Online() {
-  const { color } = useParams();
+  const { color, gameroom } = useParams();
+  console.log(gameroom);
   socket.connect();
   socket.on('connect', function () {
     console.log('Connected to server');
   });
+  socket.emit('joingame', gameroom)
   const [game, setGame] = useState(new Chess());
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState('');
@@ -29,19 +31,11 @@ function Online() {
       setGame((g) => {
         const copy = { ...g };
         move = copy.move({ from: start, to: end, promotion: pro });
-        socket.emit('move', copy.fen());
+        socket.emit('move', copy.fen(), gameroom);
         return copy;
       });
 
       if (move == null) return false;
-
-      if (game.in_checkmate()) {
-        setGameOver(true);
-        setWinner("Checkmate! You won!");
-      } else if (game.in_draw()) {
-        setGameOver(true);
-        setWinner("The game is a draw!");
-      }
     }
     return true;
   }
@@ -50,12 +44,19 @@ function Online() {
     socket.on('make_move', function (fen) {
       const copy = new Chess(fen);
       setGame(copy);
+      if (game.in_checkmate()) {
+        setGameOver(true);
+        setWinner("Checkmate! You won!");
+      } else if (game.in_draw()) {
+        setGameOver(true);
+        setWinner("The game is a draw!");
+      }
     });
 
     return () => {
       socket.off('make_move');
     };
-  }, []);
+  }, [game]);
 
   function restartGame() {
     setGame(new Chess());
