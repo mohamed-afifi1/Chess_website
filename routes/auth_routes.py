@@ -7,6 +7,7 @@
 from flask import render_template, redirect, Blueprint, url_for, make_response, request
 from flask_login import login_user,  login_required, logout_user
 from database.db_manager import db, bcrypt, LoginForm, RegisterForm, User
+from datetime import datetime
 
 app_blueprint = Blueprint('app_blueprint', __name__)
 
@@ -48,7 +49,7 @@ def register():
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        new_user = User(username=form.username.data, password=hashed_password)
+        new_user = User(username=form.username.data, password=hashed_password, Date=datetime.now())
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('app_blueprint.login'))
