@@ -44,19 +44,24 @@ function Online() {
     socket.on('make_move', function (fen) {
       const copy = new Chess(fen);
       setGame(copy);
-      if (game.in_checkmate()) {
-        setGameOver(true);
-        setWinner("Checkmate! You won!");
-      } else if (game.in_draw()) {
-        setGameOver(true);
-        setWinner("The game is a draw!");
-      }
-    });
-
+    }
+    );
     return () => {
       socket.off('make_move');
     };
   }, [game]);
+
+
+  useEffect(() => {
+    if (game.in_checkmate()) {
+      setGameOver(true);
+      setWinner("Checkmate!");
+    } else if (game.in_draw()) {
+      setGameOver(true);
+      setWinner("The game is a draw!");
+    }
+  },[game]);
+
 
   function restartGame() {
     setGame(new Chess());
