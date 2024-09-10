@@ -7,10 +7,15 @@ import { Navbar } from './navbar';
 import { useParams } from 'react-router-dom';
 import './css-files/online.css';
 import Chat from './chat';
+import { postGameData } from './handleApi'; // Import postGameData
+import { useAuth } from './AuthContext';
+
+
 
 export const socket = io('http://127.0.0.1:5000', { autoConnect: false });
 
 function Online() {
+  const { userId } = useAuth();
   const { color, gameroom } = useParams();
   console.log(gameroom);
   socket.connect();
@@ -50,15 +55,27 @@ function Online() {
       socket.off('make_move');
     };
   }, [game]);
-
+  console.log("My color: ", color)
+  console.log("My turn: ", game.turn())
 
   useEffect(() => {
     if (game.in_checkmate()) {
+      console.log('++++ in_checkmate ++++')
       setGameOver(true);
       setWinner("Checkmate!");
+      if (game.turn() === color.substring(0, 1)) {
+        postGameData(userId, gameroom, "lost", new Date().toISOString())
+        console.log('++++ in_checkmate1 ++++')
+      } else {
+        postGameData(userId, gameroom, "win", new Date().toISOString())
+        console.log('++++ in_checkmate2 ++++')
+      }
+
     } else if (game.in_draw()) {
+      console.log('++++ draw ++++')
       setGameOver(true);
       setWinner("The game is a draw!");
+      postGameData(userId, gameroom, "draw", new Date().toISOString())
     }
   },[game]);
 

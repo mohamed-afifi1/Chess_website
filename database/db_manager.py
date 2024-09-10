@@ -10,6 +10,9 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
 import datetime
+from sqlalchemy.ext.mutable import MutableList
+from sqlalchemy.dialects.postgresql import JSON
+
 
 
 db = SQLAlchemy()  # Initialize here, but configure in the main app
@@ -30,7 +33,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
-    games = db.Column(db.JSON)
+    games = db.Column(MutableList.as_mutable(db.JSON), default=[])
     Date = db.Column(db.DateTime)
 
 

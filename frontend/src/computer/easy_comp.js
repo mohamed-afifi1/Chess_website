@@ -1,13 +1,14 @@
-// easy Computer
-
 import './comp.css';
 import { useState } from 'react';
 import { Chessboard } from 'react-chessboard';
+import { useAuth } from '../AuthContext';
+import { postGameData } from '../handleApi'; // Import postGameData
 import { Chess } from 'chess.js';
 import { useNavigate } from 'react-router-dom';
 import { Navbar } from '../navbar';
 
 function EasyComputer() {
+    const { userId } = useAuth(); // userId = username 
     const [game, setGame] = useState(new Chess());
     const [gameOver, setGameOver] = useState(false);
     const [winner, setWinner] = useState('');
@@ -42,12 +43,15 @@ function EasyComputer() {
 
         if (move == null) return false;
 
+        // Check for game over conditions
         if (game.in_checkmate()) {
             setGameOver(true);
             setWinner("Checkmate! You won!");
+            postGameData(userId, "Computer", "win", new Date().toISOString());
         } else if (game.in_draw()) {
             setGameOver(true);
             setWinner("The game is a draw!");
+            postGameData(userId, "Computer", "draw", new Date().toISOString());
         }
 
         setTimeout(makeRandomMove, 200);

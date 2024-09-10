@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     { path: '/computer', element: <ChooseComputer /> },  // Only show ChooseComputer on /computer
     { path: '/computer/easy_comp', element: <EasyComputer /> },  // Easy computer route
     { path: '/computer/hard_comp', element: <HardComputer /> },  // Hard computer route
-    {path: '/profile', element: <Profile /> }, // Profile route
+    { path: '/profile', element: <Profile /> }, // Profile route
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

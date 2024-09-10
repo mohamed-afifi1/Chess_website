@@ -36,15 +36,24 @@ def get_games():
 
 @api.route('/games', methods=['POST'])
 def add_game():
-    ### the request should be {
-    #    'username': 'username',
-    ##    'game': {'gameroom': str, 'state': win or lose or draw, 'state': 0-1 or 1-0 or 1/2-1/2, 'date': datetime.now }  
-    ##}
     data = request.get_json()
     try:
         user = User.query.filter_by(username=data['username']).first()
+        if user is None:
+            return jsonify({'error': 'User not found'}), 404
+        
+        # Ensure games is a list
+        if not isinstance(user.games, list):
+            user.games = []
+
+        print("-----user.games", user.games)
+        # Append the new game to the list
         user.games.append(data['game'])
+        print("-----user.games", user.games)
+        # Commit the changes to the database
         db.session.commit()
+        print("-----user.games", user.games)
+
         return jsonify({'message': 'Game added successfully'})
     except Exception as e:
-        return jsonify({'error': str(e)})
+        return jsonify({'error': str(e)}), 500
