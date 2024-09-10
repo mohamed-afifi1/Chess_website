@@ -32,3 +32,19 @@ def get_games():
         for user in users:
             dictionary_games[user.username] = user.games
         return jsonify(dictionary_games)
+
+
+@api.route('/games', methods=['POST'])
+def add_game():
+    ### the request should be {
+    #    'username': 'username',
+    ##    'game': {'gameroom': str, 'state': win or lose or draw, 'state': 0-1 or 1-0 or 1/2-1/2, 'date': datetime.now }  
+    ##}
+    data = request.get_json()
+    try:
+        user = User.query.filter_by(username=data['username']).first()
+        user.games.append(data['game'])
+        db.session.commit()
+        return jsonify({'message': 'Game added successfully'})
+    except Exception as e:
+        return jsonify({'error': str(e)})
