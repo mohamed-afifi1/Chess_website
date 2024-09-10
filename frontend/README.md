@@ -1,3 +1,38 @@
+const apiUrl = 'http://localhost/api/games';
+
+const requestData = {
+    username: 'your-username', // Replace with the actual username
+    game: {
+        gameroom: '123', // Replace with the specific gameroom
+        state: 'win', // Replace with 'win', 'lose', or 'draw'
+        result: '1-0', // Replace with the actual game result (e.g., '1-0', '0-1', '1/2-1/2')
+        date: new Date().toISOString(), // Current date and time
+    },
+};
+
+// Create the fetch request
+fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(requestData),
+})
+    .then(response => response.json())
+    .then(data => {
+        console.log('Response from server:', data);
+        // Handle the response as needed (e.g., show a success message)
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Handle any errors (e.g., display an error message)
+    });
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
