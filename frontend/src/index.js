@@ -4,8 +4,7 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ChessOffline from './chessoffline';
 import EasyComputer from './computer/easy_comp';
-import HardComputer from './computer/hard_comp';
-import ChooseComputer from './computer/choose_comp';
+
 import Profile from './profile';
 import App from './App';
 import Online from './online';
@@ -19,9 +18,7 @@ const router = createBrowserRouter([
     { path: '*', element: <h1>Page not found</h1> },// 404 page handler
     { path: '/online', element: <ChooseColor /> },
     {path: '/online/:gameroom/:color', element: <Online />},
-    { path: '/computer', element: <ChooseComputer /> },  // Only show ChooseComputer on /computer
-    { path: '/computer/easy_comp', element: <EasyComputer /> },  // Easy computer route
-    { path: '/computer/hard_comp', element: <HardComputer /> },  // Hard computer route
+    { path: '/computer', element: <EasyComputer /> },
     { path: '/profile', element: <Profile /> }, // Profile route
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
