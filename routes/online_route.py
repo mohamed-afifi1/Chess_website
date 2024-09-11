@@ -23,9 +23,9 @@ def join(gameroom):
 
 @Socketio.on('move')
 def move(data, gameroom):
-    emit('make_move', data,room=gameroom, include_self=True)
+    emit('make_move', data,room=gameroom)
 
 @Socketio.on('sendMessage')
 def send_message(message, gameroom):
     final_mesg = message['user'] +': '+ message['message']
-    emit('message', final_mesg, broadcast=True, include_self=True)
+    emit('message', final_mesg, broadcast=True)
