@@ -41,19 +41,13 @@ def add_game():
         user = User.query.filter_by(username=data['username']).first()
         if user is None:
             return jsonify({'error': 'User not found'}), 404
-        
-        # Ensure games is a list
         if not isinstance(user.games, list):
             user.games = []
-
-        print("-----user.games", user.games)
-        # Append the new game to the list
+        for game in user.games:
+            if data['game']['date'][0:21] == game['date'][0:21]:
+                return
         user.games.append(data['game'])
-        print("-----user.games", user.games)
-        # Commit the changes to the database
         db.session.commit()
-        print("-----user.games", user.games)
-
         return jsonify({'message': 'Game added successfully'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500

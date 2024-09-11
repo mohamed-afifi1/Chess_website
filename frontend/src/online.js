@@ -58,21 +58,31 @@ function Online() {
   console.log("My color: ", color)
   console.log("My turn: ", game.turn())
 
+  let varOutside = 0;
   useEffect(() => {
+    let varInside = 0;
     if (game.in_checkmate()) {
-      console.log('++++ in_checkmate ++++')
+      console.log('++++ in_checkmate ++++,for:', color, userId, `out = ${varOutside}`, `in= ${varInside}`);
+      varInside++;
+      varOutside++;
+      
       setGameOver(true);
       setWinner("Checkmate!");
       if (game.turn() === color.substring(0, 1)) {
+        varInside++;
+        varOutside++;
         postGameData(userId, gameroom, "lost", new Date().toISOString())
-        console.log('++++ in_checkmate1 ++++')
+        console.log('++++ in_checkmate1 ++++,for:', color, userId, `out = ${varOutside}`, `in= ${varInside}`);
+
       } else {
+        varInside++;
+        varOutside++;
         postGameData(userId, gameroom, "win", new Date().toISOString())
-        console.log('++++ in_checkmate2 ++++')
+        console.log('++++ in_checkmate2 ++++,for:', color, userId, `out = ${varOutside}`, `in= ${varInside}`);
       }
 
     } else if (game.in_draw()) {
-      console.log('++++ draw ++++')
+      console.log('++++ draw ++++', color, userId)
       setGameOver(true);
       setWinner("The game is a draw!");
       postGameData(userId, gameroom, "draw", new Date().toISOString())

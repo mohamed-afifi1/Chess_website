@@ -11,7 +11,7 @@ const ChooseColor = () => {
         <>
         <Navbar />
         <div className="choose-computer-container">
-            <h2 className="choose-computer-heading">Choose the color you play with</h2>
+            <h2 className="choose-computer-heading">Enter Game Code</h2>
             <div className="choose-computer-links">
                 <input type='text'
                 placeholder='Enter the game room (make it unique as possible)'
