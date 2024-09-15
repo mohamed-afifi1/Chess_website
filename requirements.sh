@@ -1,4 +1,5 @@
 #!/bin/bash
+# there are more requirements to install, we will provide it here soon.
 echo " ==== You need us :) ==== "
 sudo apt update
 sudo apt install sqlite3

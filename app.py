@@ -1,3 +1,7 @@
+"""
+main python module.
+"""
+
 from flask import Flask
 from routes.auth_routes import app_blueprint
 from database.db_manager import db, bcrypt, login_manager

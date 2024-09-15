@@ -1,27 +1,44 @@
 #!/usr/bin/python3
+"""
+API routes for the application
+"""
 
-from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, Blueprint
-from database.db_manager import db, bcrypt, LoginForm, RegisterForm, User
+from flask import request, jsonify, Blueprint
+from database.db_manager import db, User
 
 api = Blueprint('api', __name__, url_prefix='/api')
 
+
 @api.route('/users', methods=['GET'])
 def get_users():
+    """
+    return a list of users
+    """
     data = request.args
     try:
         user = User.query.filter_by(username=data['username']).first()
-        return jsonify({user.id:{ 'username': user.username, 'Date': user.Date }})
+        return jsonify({
+            user.id: {
+                'username': user.username,
+                'Date': user.Date
+            }
+        })
     except Exception as e:
         users = User.query.all()
         dictionary_users = {}
         for user in users:
-            dictionary_users[user.id] = {'username': user.username, 'Date': user.Date}
+            dictionary_users[user.id] = {
+                'username': user.username,
+                'Date': user.Date
+            }
         return jsonify(dictionary_users)
 
 
 @api.route('/games', methods=['GET'])
 def get_games():
+    """
+    return a list of games for a user.
+    """
     data = request.args
     try:
         user = User.query.filter_by(username=data['username']).first()
@@ -36,16 +53,22 @@ def get_games():
 
 @api.route('/games', methods=['POST'])
 def add_game():
+    """
+    posting a game played by a user
+    """
     data = request.get_json()
     try:
         user = User.query.filter_by(username=data['username']).first()
         if user is None:
             return jsonify({'error': 'User not found'}), 404
+
         if not isinstance(user.games, list):
             user.games = []
+
         for game in user.games:
-            if data['game']['date'][0:21] == game['date'][0:21]:
+            if data['game']['date'][:21] == game['date'][:21]:
                 return
+
         user.games.append(data['game'])
         db.session.commit()
         return jsonify({'message': 'Game added successfully'})
