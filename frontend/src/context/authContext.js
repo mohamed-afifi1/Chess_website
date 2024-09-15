@@ -5,18 +5,18 @@ const AuthContext = createContext();
 const params = querystring.parse(window.location.search);
 const Idloged = params.username;
 export function AuthProvider({ children }) {
-    const [userId, setUserId] = useState('');
+  const [userName, setUserName] = useState('');
 
     useEffect(() => {
         if (Idloged) {
-          setUserId(Idloged);
+          setUserName(Idloged);
         }
         else {
           window.location.replace('http://localhost:5000/login');
         }
       }, []);
       return (
-        <AuthContext.Provider value={{ userId, setUserId }}>
+        <AuthContext.Provider value={{ userName, setUserName }}>
           {children}
         </AuthContext.Provider>
       );

@@ -66,7 +66,7 @@ def add_game():
             user.games = []
 
         for game in user.games:
-            if data['game']['date'][:21] == game['date'][:21]:
+            if data['game']['date'][:19] == game['date'][:19]:
                 return
 
         user.games.append(data['game'])

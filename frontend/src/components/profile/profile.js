@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from './AuthContext';
-import './css-files/profile.css';
-import { Navbar } from './navbar';
+import { useAuth } from '../../context/authContext';
+import './profile.css';
+import { Navbar } from '../../navbar';
 
 const Profile = () => {
-    const { userId } = useAuth(); // username
+    const { userName } = useAuth(); // username
     const [gameStats, setGameStats] = useState(null);
 
     // Fetch the game data for the user
@@ -13,7 +13,7 @@ const Profile = () => {
             try {
                 const response = await fetch(`http://localhost:5000/api/games`);
                 const data = await response.json();
-                const userGames = data[userId] || [];
+                const userGames = data[userName] || [];
 
                 // Calculate game stats
                 const totalGames = userGames.length;
@@ -38,7 +38,7 @@ const Profile = () => {
         };
 
         fetchGameData();
-    }, [userId]);
+    }, [userName]);
 
     if (!gameStats) return <p>Loading profile...</p>;
 
@@ -48,7 +48,7 @@ const Profile = () => {
             <div className="profile-container">
 
                 <div className="profile-header">
-                    <h1>{userId}'s Profile</h1>
+                    <h1>{userName}'s Profile</h1>
                 </div>
                 <div className="profile-stats">
                     <div className="stats-box">

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { Chess } from "chess.js";
-import './css-files/offline.css';
-import { Navbar } from './navbar';
-import { AuthProvider } from './AuthContext';
+import './chessOffline.css';
+import { Navbar } from '../../navbar';
+import { AuthProvider } from '../../context/authContext';
 
 function ChessOffline() {
   const [game, setGame] = useState(new Chess());
@@ -41,24 +41,24 @@ function ChessOffline() {
 
   return (
     <>
-    <AuthProvider>
-      <Navbar />
-      <div className="chess-offline-container">
-        {gameOver && (
-          <div className="chess-offline-game-over-screen">
-            <h2>{winner}</h2>
-            <button onClick={restartGame}>Restart Game</button>
+      <AuthProvider>
+        <Navbar />
+        <div className="chess-offline-container">
+          {gameOver && (
+            <div className="chess-offline-game-over-screen">
+              <h2>{winner}</h2>
+              <button onClick={restartGame}>Restart Game</button>
+            </div>
+          )}
+          <div className="chess-offline-board">
+            <Chessboard
+              position={game.fen()}
+              onPieceDrop={drop}
+              customDarkSquareStyle={{ backgroundColor: "#f39c12" }}
+              customArrowColor="blue"
+            />
           </div>
-        )}
-        <div className="chess-offline-board">
-          <Chessboard
-            position={game.fen()}
-            onPieceDrop={drop}
-            customDarkSquareStyle={{ backgroundColor: "#f39c12" }}
-            customArrowColor="blue"
-          />
         </div>
-      </div>
       </AuthProvider>
     </>
   );

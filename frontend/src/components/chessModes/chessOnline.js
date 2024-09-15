@@ -3,19 +3,19 @@ import React from 'react';
 import { io } from 'socket.io-client';
 import { Chessboard } from 'react-chessboard';
 import { Chess } from 'chess.js';
-import { Navbar } from './navbar';
+import { Navbar } from '../../navbar';
 import { useParams } from 'react-router-dom';
-import './css-files/online.css';
-import Chat from './chat';
-import { postGameData } from './handleApi'; // Import postGameData
-import { useAuth } from './AuthContext';
+import './chessOnline.css';
+import Chat from '../chat/chat';
+import { postGameData } from '../../api/apiHandler'; // Import postGameData
+import { useAuth } from '../../context/authContext';
 
 
 
 export const socket = io('http://127.0.0.1:5000', { autoConnect: false });
 
 function Online() {
-  const { userId } = useAuth();
+  const { userName } = useAuth();
   const { color, gameroom } = useParams();
   console.log(gameroom);
   socket.connect();
@@ -62,32 +62,32 @@ function Online() {
   useEffect(() => {
     let varInside = 0;
     if (game.in_checkmate()) {
-      console.log('++++ in_checkmate ++++,for:', color, userId, `out = ${varOutside}`, `in= ${varInside}`);
+      console.log('++++ in_checkmate ++++,for:', color, userName, `out = ${varOutside}`, `in= ${varInside}`);
       varInside++;
       varOutside++;
-      
+
       setGameOver(true);
       setWinner("Checkmate!");
       if (game.turn() === color.substring(0, 1)) {
         varInside++;
         varOutside++;
-        postGameData(userId, gameroom, "lost", new Date().toISOString())
-        console.log('++++ in_checkmate1 ++++,for:', color, userId, `out = ${varOutside}`, `in= ${varInside}`);
+        postGameData(userName, gameroom, "lost", new Date().toISOString())
+        console.log('++++ in_checkmate1 ++++,for:', color, userName, `out = ${varOutside}`, `in= ${varInside}`);
 
       } else {
         varInside++;
         varOutside++;
-        postGameData(userId, gameroom, "win", new Date().toISOString())
-        console.log('++++ in_checkmate2 ++++,for:', color, userId, `out = ${varOutside}`, `in= ${varInside}`);
+        postGameData(userName, gameroom, "win", new Date().toISOString())
+        console.log('++++ in_checkmate2 ++++,for:', color, userName, `out = ${varOutside}`, `in= ${varInside}`);
       }
 
     } else if (game.in_draw()) {
-      console.log('++++ draw ++++', color, userId)
+      console.log('++++ draw ++++', color, userName)
       setGameOver(true);
       setWinner("The game is a draw!");
-      postGameData(userId, gameroom, "draw", new Date().toISOString())
+      postGameData(userName, gameroom, "draw", new Date().toISOString())
     }
-  },[game]);
+  }, [game]);
 
 
   function restartGame() {

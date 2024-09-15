@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { io } from 'socket.io-client'
-import { useAuth } from './AuthContext';
-import './css-files/chat.css';
+import { useAuth } from '../../context/authContext';
+import './chat.css';
 import { useParams } from 'react-router-dom';
 const socket = io('http://127.0.0.1:5000', { autoConnect: false });
 
 function Chat() {
     socket.connect();
-    const { userId } = useAuth();
+    const { userName } = useAuth();
     const [message, setMessage] = useState('');
     const [Chat, setChat] = useState([]);
     const { gameroom } = useParams();
@@ -20,7 +20,7 @@ function Chat() {
         return () => {
             socket.off();
         }
-    }, [userId, Chat]);
+    }, [userName, Chat]);
 
     return (
         <div className='chat-container'>
@@ -38,7 +38,7 @@ function Chat() {
                     onChange={(e) => setMessage(e.target.value)}
                     onKeyPress={(e) => {
                         if (e.key === 'Enter') {
-                            socket.emit('sendMessage', { 'message': message, 'user': userId }, gameroom);
+                            socket.emit('sendMessage', { 'message': message, 'user': userName }, gameroom);
                             setMessage('');
                         }
                     }}
